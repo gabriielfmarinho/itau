@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  pix:
+    image: mysql
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pix
+      MYSQL_DATABASE: pix
+      MYSQL_USER: pix
+      MYSQL_PASSWORD: pix
+    ports:
+      - 3306:3306
