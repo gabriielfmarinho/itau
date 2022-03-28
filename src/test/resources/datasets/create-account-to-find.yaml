@@ -1,0 +1,5 @@
+accounts:
+  - id: 1
+    account_type: "CURRENT"
+    agency_number: 1010
+    account_number: 202020

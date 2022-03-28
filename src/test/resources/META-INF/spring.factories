@@ -1,0 +1,2 @@
+org.springframework.test.context.TestExecutionListener=\
+  com.itau.pix.integration.config.CleanMySqlDataBaseAfterTestExecution
