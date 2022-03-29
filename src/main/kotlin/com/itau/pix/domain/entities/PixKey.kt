@@ -10,7 +10,10 @@ class PixKey(
 
     @Id
     @GeneratedValue
-    val id: UUID,
+    val id: UUID = UUID.randomUUID(),
+
+    @ManyToOne(cascade = [CascadeType.ALL])
+    val account: Account,
 
     @Enumerated(EnumType.STRING)
     val keyType: KeyType,

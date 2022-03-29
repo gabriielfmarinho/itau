@@ -15,7 +15,7 @@ class FindAccountService(
     }
 
     fun findByAgencyAndAccountNumber(agencyNumber: Int, accountNumber: Int): Account {
-        log.info("initiating consultation in the customer base by agencyNumber=${agencyNumber}," +
+        log.info("initiating consultation in the account base by agencyNumber=${agencyNumber}," +
                 " accountNumber=${accountNumber}")
         return accountRepository
             .findByAgencyAndAccountNumber(agencyNumber, accountNumber)

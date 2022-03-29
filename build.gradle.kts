@@ -29,11 +29,12 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
+	implementation("org.springdoc:springdoc-openapi-ui:1.6.6")
+	implementation("br.com.caelum.stella:caelum-stella-core:2.1.2")
 	runtimeOnly("mysql:mysql-connector-java")
 	testImplementation("org.testcontainers:mysql:1.15.2")
 	testImplementation("com.github.database-rider:rider-junit5:1.32.3")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 }
 
 dependencyManagement {

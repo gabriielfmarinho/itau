@@ -9,3 +9,6 @@ spring:
       dialect: org.hibernate.dialect.MySQL5Dialect
       ddl-auto: update
     show-sql: true
+springdoc:
+  swagger-ui:
+    path: "/swagger-ui-custom.html"

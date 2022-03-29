@@ -1,7 +1,6 @@
 package com.itau.pix.domain.entities
 
 import com.itau.pix.domain.enums.AccountType
-import com.itau.pix.domain.enums.TypePerson
 import javax.persistence.*
 
 @Entity
@@ -12,11 +11,16 @@ data class Account(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 1,
 
+    @ManyToOne(cascade = [CascadeType.ALL])
+    val client: Client,
+
     @Enumerated(EnumType.STRING)
     val accountType: AccountType,
 
+    @Column(nullable = false)
     val agencyNumber: Int,
 
+    @Column(nullable = false)
     val accountNumber: Int,
 
     ) : BaseEntity()

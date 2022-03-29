@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class FindClientService(
-    val clientRepository: ClientRepository
+    private val clientRepository: ClientRepository
 ) {
 
     companion object {

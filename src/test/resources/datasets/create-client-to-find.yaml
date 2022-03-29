@@ -3,3 +3,5 @@ clients:
     type_person: "PERSON"
     first_name: "GABRIEL"
     last_name: "FERREIRA"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
