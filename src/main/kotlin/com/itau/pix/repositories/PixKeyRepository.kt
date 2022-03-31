@@ -1,7 +1,6 @@
 package com.itau.pix.repositories
 
 import com.itau.pix.domain.entities.PixKey
-import com.itau.pix.domain.enums.KeyType
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
@@ -21,6 +20,4 @@ interface PixKeyRepository : JpaRepository<PixKey, UUID>, PixKeyCustomRepository
     fun findByKeyValue(@Param("keyValue") keyValue: String): Optional<PixKey>
 
     fun countByAccountId(@Param("accoundId") accountId: Long): Optional<Long>
-
-    fun findByKeyType(@Param("keyType") keyType: KeyType): Optional<PixKey>
 }

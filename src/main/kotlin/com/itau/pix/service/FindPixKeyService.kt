@@ -1,11 +1,12 @@
 package com.itau.pix.service
 
+import com.itau.pix.domain.dtos.PixKeyDetailsDto
 import com.itau.pix.domain.entities.PixKey
-import com.itau.pix.domain.enums.KeyType
 import com.itau.pix.domain.exceptions.PixKeyNotFoundException
 import com.itau.pix.log.loggerFor
 import com.itau.pix.repositories.PixKeyRepository
 import com.itau.pix.resources.v1.request.Params
+import org.slf4j.Logger
 import org.springframework.data.domain.Page
 import org.springframework.stereotype.Service
 import java.util.*
@@ -14,9 +15,6 @@ import java.util.*
 class FindPixKeyService(
     val pixKeyRepository: PixKeyRepository
 ) {
-    companion object {
-        val log = loggerFor(FindPixKeyService::class.java)
-    }
 
     fun findByKeyValue(keyValue: String): PixKey {
         log.info("initiating consultation in the pix key base by keyValue=${keyValue}")
@@ -36,15 +34,13 @@ class FindPixKeyService(
             .orElseThrow { PixKeyNotFoundException() }
     }
 
-    fun findByKeyType(keyType: KeyType): PixKey {
-        log.info("initiating consultation in the pix key base by keyType=${keyType}")
-        return pixKeyRepository.findByKeyType(keyType)
+    fun findPaged(params: Params): Page<PixKeyDetailsDto> {
+        log.info("initiating consultation in the pix key base by params=${params} and with pagination")
+        return pixKeyRepository.findPaged(params)
             .orElseThrow { PixKeyNotFoundException() }
     }
 
-    fun findPaged(params: Params): Page<PixKey> {
-        log.info("initiating consultation in the pix key base by params=${params}")
-        return pixKeyRepository.findPaged(params)
-            .orElseThrow { PixKeyNotFoundException() }
+    companion object {
+        val log: Logger = loggerFor(FindPixKeyService::class.java)
     }
 }

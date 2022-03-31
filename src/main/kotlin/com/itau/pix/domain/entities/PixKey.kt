@@ -1,6 +1,7 @@
 package com.itau.pix.domain.entities
 
 import com.itau.pix.domain.enums.KeyType
+import java.time.LocalDateTime
 import java.util.*
 import javax.persistence.*
 
@@ -21,4 +22,19 @@ class PixKey(
     @Column(unique = true)
     val keyValue: String,
 
-    ) : BaseEntity()
+    var inactive: Boolean,
+
+    var dateInactive: LocalDateTime? = null,
+
+    ) : BaseEntity() {
+
+    fun inactivate() {
+        inactive = true
+        dateInactive = LocalDateTime.now()
+    }
+
+    fun isInactive(): Boolean {
+        return inactive
+    }
+
+}

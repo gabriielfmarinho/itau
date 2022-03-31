@@ -29,6 +29,6 @@ data class CreatePixKeyRequest(
         var accountHolderName: String,
 
     @field:Size(min = 0, max = 77)
-    var accountHolderLastName: String = ""
+    var accountHolderLastName: String?
 
 )

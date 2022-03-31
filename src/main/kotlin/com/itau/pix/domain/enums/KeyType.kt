@@ -6,5 +6,4 @@ enum class KeyType {
     CPF,
     CNPJ,
     RANDOM;
-
 }

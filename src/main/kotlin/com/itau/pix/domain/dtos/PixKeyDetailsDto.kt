@@ -1,10 +1,10 @@
-package com.itau.pix.resources.v1.response
+package com.itau.pix.domain.dtos
 
 import com.itau.pix.domain.enums.AccountType
 import com.itau.pix.domain.enums.KeyType
+import java.util.*
 
-data class PixKeyResponse(
-
+data class PixKeyDetailsDto(
     val keyType: KeyType,
 
     val keyValue: String,

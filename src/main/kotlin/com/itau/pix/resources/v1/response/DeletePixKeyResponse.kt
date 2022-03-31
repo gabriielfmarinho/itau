@@ -2,9 +2,9 @@ package com.itau.pix.resources.v1.response
 
 import com.itau.pix.domain.enums.AccountType
 import com.itau.pix.domain.enums.KeyType
+import java.time.LocalDateTime
 
-data class PixKeyResponse(
-
+data class DeletePixKeyResponse(
     val keyType: KeyType,
 
     val keyValue: String,
@@ -15,7 +15,11 @@ data class PixKeyResponse(
 
     val accountNumber: Int,
 
-    var accountHolderName: String,
+    val accountHolderName: String,
 
-    var accountHolderLastName: String
+    val accountHolderLastName: String,
+
+    val dateCreate: LocalDateTime,
+
+    val dateInactive: LocalDateTime?,
 )
