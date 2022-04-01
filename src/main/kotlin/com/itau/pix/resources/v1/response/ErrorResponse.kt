@@ -29,7 +29,7 @@ class ErrorResponse private constructor(
 
         fun status(status: Int) = apply { this.status = status }
 
-        fun error(status: String) = apply { this.error = error }
+        fun error(error: String) = apply { this.error = error }
 
         fun message(message: String) = apply { this.message = message }
 

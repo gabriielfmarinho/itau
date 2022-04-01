@@ -34,6 +34,7 @@ dependencies {
 	runtimeOnly("mysql:mysql-connector-java")
 	testImplementation("org.testcontainers:mysql:1.15.2")
 	testImplementation("com.github.database-rider:rider-junit5:1.32.3")
+	testImplementation("io.rest-assured:rest-assured")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 

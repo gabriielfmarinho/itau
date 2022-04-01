@@ -19,7 +19,7 @@ data class DeletePixKeyResponse(
 
     val accountHolderLastName: String,
 
-    val dateCreate: LocalDateTime,
+    val dateCreate: LocalDateTime?,
 
     val dateInactive: LocalDateTime?,
 )

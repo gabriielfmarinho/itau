@@ -19,7 +19,7 @@ class PixKeyCustomRepositoryImpl(
     override fun findPaged(params: Params): Optional<Page<PixKeyDetailsDto>> {
         val parameters = getParameters(params)
         val total = countTotal(parameters)
-        if (total > 0) {
+        if (total <= 0) {
             return Optional.empty()
         }
         val pixKeys = findPixKeys(parameters)
@@ -51,7 +51,7 @@ class PixKeyCustomRepositoryImpl(
         val parameters = MapSqlParameterSource()
         parameters.addValue(AGENCY_NUMBER_FIELD, params.agencyNumber)
         parameters.addValue(ACCOUNT_NUMBER_FIELD, params.accountNumber)
-        parameters.addValue(KEY_TYPE_FIELD, params.keyType.name)
+        parameters.addValue(KEY_TYPE_FIELD, params.keyType?.name)
         parameters.addValue(LIMIT_PARAMETER, params.size)
         parameters.addValue(OFFSET_PARAMETER, getOffSet(params))
         return parameters

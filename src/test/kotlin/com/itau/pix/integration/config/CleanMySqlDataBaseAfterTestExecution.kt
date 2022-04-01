@@ -31,16 +31,16 @@ class CleanMySqlDataBaseAfterTestExecution : TestExecutionListener {
         try {
             connection.use {
                 statement.use {
-                    execute(statement, "SET REFERENTIAL_INTEGRITY FALSE")
-                    val tableNames = executeQuery(statement, "SHOW TABLES")
-                    getRows(tableNames)
+                    execute(statement, "SET @@foreign_key_checks = 0")
+                    val tableNamesToTrucate = executeQuery(statement, "SHOW TABLES")
+                    getRows(tableNamesToTrucate)
                         ?.forEach(Consumer { tableName: String -> execute(statement, "TRUNCATE TABLE ${tableName}") })
-                    val sequences = executeQuery(statement, "SHOW SEQUENCES")
-                    getRows(sequences)
-                        ?.forEach(Consumer { sequence: String ->
-                            execute(statement, "ALTER SEQUENCE ${sequence} RESTART WITH 1")
+                    val tableNamesToAlter = executeQuery(statement, "SHOW TABLES")
+                    getRows(tableNamesToAlter)
+                        ?.forEach(Consumer { tableName: String ->
+                            execute(statement, "ALTER TABLE ${tableName} AUTO_INCREMENT = 1")
                         })
-                    execute(statement, "SET REFERENTIAL_INTEGRITY TRUE")
+                    execute(statement, "SET @@foreign_key_checks = 1")
                 }
             }
         } catch (e: Exception) {

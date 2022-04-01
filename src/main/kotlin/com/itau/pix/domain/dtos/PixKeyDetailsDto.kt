@@ -2,9 +2,12 @@ package com.itau.pix.domain.dtos
 
 import com.itau.pix.domain.enums.AccountType
 import com.itau.pix.domain.enums.KeyType
-import java.util.*
+import java.time.LocalDateTime
 
 data class PixKeyDetailsDto(
+
+    val id: String,
+
     val keyType: KeyType,
 
     val keyValue: String,
@@ -17,5 +20,8 @@ data class PixKeyDetailsDto(
 
     var accountHolderName: String,
 
-    var accountHolderLastName: String
+    var accountHolderLastName: String,
+
+    val dateCreate: LocalDateTime?
+
 )

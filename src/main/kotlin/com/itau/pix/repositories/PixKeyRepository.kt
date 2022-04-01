@@ -14,10 +14,29 @@ interface PixKeyRepository : JpaRepository<PixKey, UUID>, PixKeyCustomRepository
         value = """
         select * from keys_pix kp
         where kp.key_value = :keyValue
+        and kp.inactive = false
     """,
         nativeQuery = true
     )
     fun findByKeyValue(@Param("keyValue") keyValue: String): Optional<PixKey>
 
-    fun countByAccountId(@Param("accoundId") accountId: Long): Optional<Long>
+    @Query(
+        value = """
+        select count(*) from keys_pix kp
+        where kp.account_id = :accountId
+        and kp.inactive = false
+    """,
+        nativeQuery = true
+    )
+    fun countByAccountId(@Param("accountId") accountId: Long): Optional<Long>
+
+    @Query(
+        value = """
+        select * from keys_pix kp
+        where kp.id = :id
+        and kp.inactive = false
+    """,
+        nativeQuery = true
+    )
+    fun findById(@Param("id") id: String): Optional<PixKey>
 }

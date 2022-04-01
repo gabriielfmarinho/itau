@@ -30,7 +30,7 @@ class FindPixKeyService(
 
     fun findById(id: String) : PixKey {
         log.info("initiating consultation in the pix key base by id=${id}")
-        return pixKeyRepository.findById(UUID.fromString(id))
+        return pixKeyRepository.findById(id)
             .orElseThrow { PixKeyNotFoundException() }
     }
 

@@ -19,7 +19,8 @@ interface PixKeyCustomRepository {
                        ac.agency_number,
                        ac.account_number, 
                        c.first_name,
-                       c.last_name
+                       c.last_name, 
+                       kp.date_create
                 from keys_pix kp
                 inner join accounts ac
                 on kp.account_id = ac.id
@@ -28,6 +29,7 @@ interface PixKeyCustomRepository {
                 where ( ac.agency_number = :agencyNumber or :agencyNumber is null ) 
                 and ( ac.account_number = :accountNumber or :accountNumber is null )
                 and ( kp.key_type = :keyType or :keyType is null )
+                and kp.inactive = false
                 limit :offset, :limit
             """
 
@@ -40,6 +42,7 @@ interface PixKeyCustomRepository {
                 where ( ac.agency_number = :agencyNumber or :agencyNumber is null) 
                 and (ac.account_number = :accountNumber or :accountNumber is null )
                 and ( kp.key_type = :keyType or :keyType is null )
+                and kp.inactive = false
             """
     }
 
