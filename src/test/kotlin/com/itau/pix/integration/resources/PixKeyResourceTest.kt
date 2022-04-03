@@ -2,6 +2,7 @@ package com.itau.pix.integration.resources
 
 import com.github.database.rider.core.api.dataset.DataSet
 import com.github.database.rider.junit5.api.DBRider
+import com.itau.pix.factory.CreatePixKeyRequestFactory
 import com.itau.pix.integration.config.IntegrationTest
 import io.restassured.RestAssured
 import org.apache.http.HttpStatus
@@ -10,10 +11,12 @@ import org.junit.jupiter.api.Test
 
 @DBRider
 @IntegrationTest
-class PixKeyResourceTest {
+class PixKeyResourceTest(
+    private val createPixKeyRequestFactory: CreatePixKeyRequestFactory
+) {
 
     @Test
-    @DataSet(value = arrayOf("datasets/create-pix-key-to-find.yaml"))
+    @DataSet(value = ["datasets/create-pix-key-to-find.yaml"])
     fun shouldGetPixKeyPagedWithSuccess() {
         RestAssured
             .given()
@@ -30,7 +33,39 @@ class PixKeyResourceTest {
     }
 
     @Test
-    @DataSet(value = arrayOf("datasets/create-pix-key-to-find.yaml"))
+    fun shouldReturnStatusCode422WhenStrategyNotExist() {
+        val pixKeyToRequest = createPixKeyRequestFactory.createDefault()
+        RestAssured
+            .given()
+            .log().all()
+            .`when`()
+            .body(pixKeyToRequest)
+            .post("/pix-keys")
+            .then()
+            .log().all()
+            .statusCode(HttpStatus.SC_UNPROCESSABLE_ENTITY)
+            .body("status", `is`(422))
+            .body("error", `is`("java.lang.IllegalArgumentException"))
+            .body("message", `is`("The strategy to RANDOM does not exist"))
+    }
+
+    @Test
+    fun shouldGetPixKeyPagedAndReturnStatusCode404BecausePixKeyNotExist() {
+        RestAssured
+            .given()
+            .log().all()
+            .`when`()
+            .get("/pix-keys/paged")
+            .then()
+            .log().all()
+            .statusCode(HttpStatus.SC_NOT_FOUND)
+            .body("status", `is`(404))
+            .body("error", `is`("com.itau.pix.domain.exceptions.PixKeyNotFoundException"))
+            .body("message", `is`("your pix key not found"))
+    }
+
+    @Test
+    @DataSet(value = ["datasets/create-pix-key-to-find.yaml"])
     fun shouldGetPixKeyByIdWithSuccess() {
         RestAssured
             .given()

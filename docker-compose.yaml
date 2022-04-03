@@ -12,6 +12,10 @@ services:
       MYSQL_PASSWORD: pix
     ports:
       - 3306:3306
+  sonar:
+    image: sonarqube
+    ports:
+      - 9000:9000
 
 volumes:
   db_data: {}

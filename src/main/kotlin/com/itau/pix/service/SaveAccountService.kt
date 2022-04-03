@@ -19,7 +19,7 @@ class SaveAccountService(
 
     fun create(createAccountDto: CreateAccountDto): AccountDto {
         log.info("saving object client in base, createAccountDto=${createAccountDto}")
-        if(accountAlreadyExistService.check(createAccountDto.agencyNumber, createAccountDto.agencyNumber)){
+        if(accountAlreadyExistService.check(createAccountDto.agencyNumber, createAccountDto.accountNumber)){
             throw AccountAlreadyExistException()
         }
         val client = findClientService.findById(createAccountDto.clientId)

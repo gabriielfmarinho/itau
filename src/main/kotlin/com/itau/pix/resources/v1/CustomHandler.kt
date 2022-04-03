@@ -1,5 +1,7 @@
 package com.itau.pix.resources.v1
 
+import com.itau.pix.domain.exceptions.AccountAlreadyExistException
+import com.itau.pix.domain.exceptions.ClientAlreadyRegisteredException
 import com.itau.pix.domain.exceptions.CustomerDifferentFromAccountException
 import com.itau.pix.domain.exceptions.PixKeyAlreadyInactivatedException
 import com.itau.pix.domain.exceptions.PixKeyNotFoundException
@@ -10,8 +12,6 @@ import org.springframework.validation.FieldError
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
-import javax.validation.ConstraintViolation
-import javax.validation.ConstraintViolationException
 import javax.validation.UnexpectedTypeException
 
 
@@ -78,6 +78,50 @@ class CustomHandler {
             )
     }
 
+    @ExceptionHandler(ClientAlreadyRegisteredException::class)
+    fun handleClientAlreadyRegisteredException(exception: ClientAlreadyRegisteredException):
+            ResponseEntity<ErrorResponse> {
+        return ResponseEntity
+            .status(HttpStatus.UNPROCESSABLE_ENTITY)
+            .body(
+                buildErrorResponse(
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                    exception.javaClass.name,
+                    MESSAGE_CLIENT_ALREADY_REGISTERED
+                )
+            )
+    }
+
+    @ExceptionHandler(AccountAlreadyExistException::class)
+    fun handleAccountAlreadyExistException(exception: AccountAlreadyExistException):
+            ResponseEntity<ErrorResponse> {
+        return ResponseEntity
+            .status(HttpStatus.UNPROCESSABLE_ENTITY)
+            .body(
+                buildErrorResponse(
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                    exception.javaClass.name,
+                    MESSAGE_ACCOUNT_ALREADY_REGISTERED
+                )
+            )
+    }
+
+    @ExceptionHandler(IllegalArgumentException::class)
+    fun handleIllegalArgumentException(exception: IllegalArgumentException):
+            ResponseEntity<ErrorResponse> {
+        return ResponseEntity
+            .status(HttpStatus.UNPROCESSABLE_ENTITY)
+            .body(
+                exception.message?.let {
+                    buildErrorResponse(
+                        HttpStatus.UNPROCESSABLE_ENTITY,
+                        exception.javaClass.name,
+                        it
+                    )
+                }
+            )
+    }
+
     @ExceptionHandler(CustomerDifferentFromAccountException::class)
     fun handleCustomerDifferentFromAccountException(exception: CustomerDifferentFromAccountException):
             ResponseEntity<ErrorResponse> {
@@ -116,5 +160,7 @@ class CustomHandler {
         private const val PIX_KEY_MESSAGE_ALREADY_INACTIVATED: String = "your pix key is already inactive"
         private const val PIX_KEY_MESSAGE_NOT_FOUND: String = "your pix key not found"
         private const val MESSAGE_CUSTOMER_DOES_NOT_HAVE_AN_ACCOUNT: String = "customer does not have an account"
+        private const val MESSAGE_CLIENT_ALREADY_REGISTERED: String = "client already registered in the base"
+        private const val MESSAGE_ACCOUNT_ALREADY_REGISTERED: String = "account already registered in the base"
     }
 }

@@ -9,10 +9,11 @@ plugins {
     kotlin("plugin.spring") version "1.6.10"
     kotlin("plugin.jpa") version "1.6.10"
     id("jacoco")
+    id ("org.sonarqube") version "3.3"
 }
 
 group = "com.itau"
-version = "0.0.1-SNAPSHOT"
+version = "1.0.0"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
@@ -38,6 +39,7 @@ dependencies {
     testImplementation("org.testcontainers:mysql:1.15.2")
     testImplementation("com.github.database-rider:rider-junit5:1.32.3")
     testImplementation("io.rest-assured:rest-assured")
+    testImplementation("io.github.serpro69:kotlin-faker:1.10.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
@@ -66,5 +68,23 @@ tasks.withType<JacocoCoverageVerification> {
                 minimum = "0.9".toBigDecimal()
             }
         }
+    }
+}
+
+tasks.withType<JacocoReport> {
+    reports {
+        xml.required.set(true)
+        html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
+    }
+}
+
+sonarqube {
+    properties {
+        property("sonar.login", "5a84b48f32ed25951ce19f1f93f7f1a9c34bac9d")
+        property("sonar.host.url", "http://localhost:9000")
+        property("sonar.projectKey", "itau")
+        property("sonar.coverage.jacoco.xmlReportPaths", "${project.buildDir}/reports/jacoco/test/jacocoTestReport.xml")
+        property("sonar.sources", "src/main")
+        property("sonar.tests", "src/test")
     }
 }
