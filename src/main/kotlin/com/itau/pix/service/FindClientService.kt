@@ -12,10 +12,27 @@ class FindClientService(
     private val clientRepository: ClientRepository
 ) {
 
-    fun findClientByFirstName(firstName: String): Client {
-        log.info("initiating consultation in the customer base by firstName=${firstName}")
+    fun findByFirstName(firstName: String): Client {
+        log.info("initiating consultation in the customer base by firstName, firstName=${firstName}")
         return clientRepository
             .findByFirstName(firstName)
+            .orElseThrow { ClientNotFoundException() }
+    }
+
+    fun findByFirstNameAndLastName(firstName: String, lastName: String?): Client {
+        log.info(
+            """"initiating consultation in the customer base by firstName and lastName,
+                firstName=${firstName}, lastName=${lastName}"""
+        )
+        return clientRepository
+            .findByFirstNameAndLastName(firstName, lastName)
+            .orElseThrow { ClientNotFoundException() }
+    }
+
+    fun findById(id: Long): Client {
+        log.info("initiating consultation in the customer base by id, id=${id}")
+        return clientRepository
+            .findById(id)
             .orElseThrow { ClientNotFoundException() }
     }
 

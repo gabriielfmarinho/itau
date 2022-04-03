@@ -1,4 +1,3 @@
 package com.itau.pix.domain.exceptions
 
-class ExceededNumbersOfKeysException : RuntimeException() {
-}
+class ExceededNumbersOfKeysException : RuntimeException()

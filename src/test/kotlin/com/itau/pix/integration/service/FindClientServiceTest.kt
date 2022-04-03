@@ -19,7 +19,7 @@ class FindClientServiceTest(
     @DataSet(value = arrayOf("datasets/create-client-to-find.yaml"))
     fun shouldFindClientByFirstNameWithSuccess() {
         val firstNameToFind = "GABRIEL"
-        val clientFound = findClientService.findClientByFirstName(firstNameToFind)
+        val clientFound = findClientService.findByFirstName(firstNameToFind)
         assertNotNull(clientFound)
     }
 
@@ -27,7 +27,7 @@ class FindClientServiceTest(
     fun shouldThrowAClientNotFoundExceptionWhenFindClientByFirstName() {
         val firstNameToFind = "LEONARDO"
         assertThrows<ClientNotFoundException> {
-            findClientService.findClientByFirstName(firstNameToFind)
+            findClientService.findByFirstName(firstNameToFind)
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.itau.pix.domain.strategy
 
 import com.itau.pix.domain.dtos.CreatePixKeyDto
+import com.itau.pix.domain.dtos.PixKeyDto
 import com.itau.pix.domain.exceptions.CNPJNotValidException
 import com.itau.pix.domain.exceptions.EqualKeyException
 import com.itau.pix.domain.exceptions.ExceededNumbersOfKeysException
@@ -20,7 +21,7 @@ class CNPJPixKey(
     private val savePixKeyService: SavePixKeyService,
     private val pixKeyAlreadyRegistered: PixKeyAlreadyRegistered
 ) : PixKey {
-    override fun create(createPixKeyDto: CreatePixKeyDto) {
+    override fun create(createPixKeyDto: CreatePixKeyDto): PixKeyDto {
 
         if (isANotValidCNPJ(createPixKeyDto.keyValue)) {
             throw CNPJNotValidException()
@@ -39,6 +40,6 @@ class CNPJPixKey(
             throw ExceededNumbersOfKeysException()
         }
 
-        savePixKeyService.save(createPixKeyDto.toPixKey(account));
+        return savePixKeyService.create(createPixKeyDto.toPixKey(account))
     }
 }

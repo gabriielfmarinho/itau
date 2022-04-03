@@ -39,4 +39,5 @@ interface PixKeyRepository : JpaRepository<PixKey, UUID>, PixKeyCustomRepository
         nativeQuery = true
     )
     fun findById(@Param("id") id: String): Optional<PixKey>
+
 }

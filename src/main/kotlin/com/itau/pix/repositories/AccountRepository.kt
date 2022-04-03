@@ -22,4 +22,21 @@ interface AccountRepository : JpaRepository<Account, Long> {
         @Param("agencyNumber") agencyNumber: Int,
         @Param("accountNumber") accountNumber: Int
     ): Optional<Account>
+
+    @Query(
+        value = """
+        select * from accounts ac
+        inner join clients c
+        on ac.client_id = c.id
+        where ac.agency_number = :agencyNumber
+        and ac.account_number = :accountNumber
+        and ac.account_ype = :accountType
+    """,
+        nativeQuery = true
+    )
+    fun findByAccountTypeAndAgencyNumberAndAccountNumber(
+        accountType: String,
+        agencyNumber: Int,
+        accountNumber: Int
+    ): Optional<Account>
 }

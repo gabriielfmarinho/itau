@@ -1,6 +1,7 @@
 package com.itau.pix.domain.strategy
 
 import com.itau.pix.domain.dtos.CreatePixKeyDto
+import com.itau.pix.domain.dtos.PixKeyDto
 import com.itau.pix.domain.exceptions.CPFNotValidException
 import com.itau.pix.domain.exceptions.EqualKeyException
 import com.itau.pix.domain.exceptions.ExceededNumbersOfKeysException
@@ -21,7 +22,7 @@ class CPFPixKey(
     private val pixKeyAlreadyRegistered: PixKeyAlreadyRegistered
 ) : PixKey {
 
-    override fun create(createPixKeyDto: CreatePixKeyDto) {
+    override fun create(createPixKeyDto: CreatePixKeyDto): PixKeyDto {
 
         if (isANotValidCPF(createPixKeyDto.keyValue)) {
             throw CPFNotValidException()
@@ -40,6 +41,6 @@ class CPFPixKey(
             throw ExceededNumbersOfKeysException()
         }
 
-        savePixKeyService.save(createPixKeyDto.toPixKey(account));
+        return savePixKeyService.create(createPixKeyDto.toPixKey(account));
     }
 }

@@ -1,6 +1,6 @@
 package com.itau.pix.integration.config
 
-import com.itau.pix.resources.v1.MEDIA_TYPE_V1
+import com.itau.pix.resources.v1.API_V1_APPLICATION_JSON_ITAU
 import io.restassured.RestAssured
 import io.restassured.builder.RequestSpecBuilder
 import io.restassured.http.ContentType
@@ -13,7 +13,7 @@ class RestAssuredExecutionListener : TestExecutionListener {
         val port = testContext.applicationContext
             .environment.getProperty(SERVER_PORT, Int::class.java, 8080)
         RestAssured.requestSpecification = RequestSpecBuilder()
-            .setAccept(MEDIA_TYPE_V1)
+            .setAccept(API_V1_APPLICATION_JSON_ITAU)
             .setContentType(ContentType.JSON)
             .setPort(port)
             .build()

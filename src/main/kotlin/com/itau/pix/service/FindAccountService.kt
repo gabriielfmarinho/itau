@@ -1,6 +1,7 @@
 package com.itau.pix.service
 
 import com.itau.pix.domain.entities.Account
+import com.itau.pix.domain.entities.PixKey
 import com.itau.pix.domain.exceptions.AccountNotFoundException
 import com.itau.pix.log.loggerFor
 import com.itau.pix.repositories.AccountRepository
@@ -19,6 +20,17 @@ class FindAccountService(
         )
         return accountRepository
             .findByAgencyAndAccountNumber(agencyNumber, accountNumber)
+            .orElseThrow { AccountNotFoundException() }
+    }
+
+    fun findByAccountTypeAndAgencyNumberAndAccountNumber(
+        accountType: String, agencyNumber: Int, accountNumber: Int
+    ): Account {
+        return accountRepository.findByAccountTypeAndAgencyNumberAndAccountNumber(
+            accountType,
+            agencyNumber,
+            accountNumber
+        )
             .orElseThrow { AccountNotFoundException() }
     }
 

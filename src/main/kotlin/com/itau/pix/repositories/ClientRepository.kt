@@ -18,4 +18,7 @@ interface ClientRepository : JpaRepository<Client, Long> {
         nativeQuery = true
     )
     fun findByFirstName(@Param("firstName") firstName: String): Optional<Client>
+
+    fun findByFirstNameAndLastName(@Param("firstName") firstName: String,
+                        @Param("lastName") lastName: String?): Optional<Client>
 }

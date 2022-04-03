@@ -7,4 +7,4 @@ import org.springframework.boot.test.context.SpringBootTest
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ExtendWith(TestContainerConfig::class)
-annotation class IntegrationTest()
+annotation class IntegrationTest
