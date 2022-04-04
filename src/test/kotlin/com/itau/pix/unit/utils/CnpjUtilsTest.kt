@@ -24,6 +24,6 @@ class CnpjUtilsTest {
     @Test
     internal fun shouldReturnTrueWhenCnpjIsNotFormatValid() {
         val cnpjNotValid = "22.414.867/0001-26"
-        assertFalse(isANotValidCNPJ(cnpjNotValid))
+        assertTrue(isANotValidCNPJ(cnpjNotValid))
     }
 }

@@ -58,7 +58,7 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
-    finalizedBy(tasks.jacocoTestReport, tasks.jacocoTestCoverageVerification)
+    finalizedBy(tasks.jacocoTestReport)
 }
 
 tasks.withType<JacocoCoverageVerification> {

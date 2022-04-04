@@ -10,15 +10,15 @@ object CnpjUtils {
     private val CNPJ_VALIDATOR = CNPJValidator()
 
     fun isANotValidCNPJ(cnpj: String): Boolean {
-        return if(isCorrectFormat(cnpj)) isValidCnpj(cnpj) else false
+        return isIncorrectFormat(cnpj) || isNotValidCnpj(cnpj)
     }
 
-    private fun isCorrectFormat(cpf: String): Boolean {
+    private fun isIncorrectFormat(cpf: String): Boolean {
         val regex = Regex(REGEX_TO_VALID_CNPJ)
-        return cpf.matches(regex)
+        return !cpf.matches(regex)
     }
 
-    private fun isValidCnpj(cnpj: String): Boolean {
+    private fun isNotValidCnpj(cnpj: String): Boolean {
         return try {
             CNPJ_VALIDATOR.assertValid(cnpj)
             false

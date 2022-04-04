@@ -40,4 +40,13 @@ interface PixKeyRepository : JpaRepository<PixKey, UUID>, PixKeyCustomRepository
     )
     fun findById(@Param("id") id: String): Optional<PixKey>
 
+    @Query(
+        value = """
+        select * from keys_pix kp
+        where kp.id = :id
+    """,
+        nativeQuery = true
+    )
+    fun findEvenInactiveBydId(@Param("id") id: String): Optional<PixKey>
+
 }

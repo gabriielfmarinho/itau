@@ -16,12 +16,12 @@ class ClientResourceTest(
 ) {
 
     @Test
-    fun shouldSuccessfullyRegisterACustomer() {
-        val client = createClientRequestFactory.createDefault()
+    internal fun shouldSuccessfullyRegisterACustomer() {
+        val clientToCreate = createClientRequestFactory.createDefault()
         RestAssured
             .given()
             .log().all()
-            .body(client)
+            .body(clientToCreate)
             .`when`()
             .post("/clients")
             .then()
@@ -31,13 +31,13 @@ class ClientResourceTest(
     }
 
     @Test
-    @DataSet(value = ["datasets/create-client-to-find.yaml"])
-    fun shouldReturnStatusCode422WhenClientIsAlreadyRegistered() {
-        val client = createClientRequestFactory.createWith("GABRIEL", "FERREIRA")
+    @DataSet(value = ["datasets/create-client-person-to-find.yaml"])
+    internal fun shouldReturnStatusCode422WhenClientIsAlreadyRegistered() {
+        val clientToCreate = createClientRequestFactory.createWith("GABRIEL", "FERREIRA")
         RestAssured
             .given()
             .log().all()
-            .body(client)
+            .body(clientToCreate)
             .`when`()
             .post("/clients")
             .then()

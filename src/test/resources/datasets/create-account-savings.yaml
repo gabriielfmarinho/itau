@@ -1,0 +1,8 @@
+accounts:
+  - id: 2
+    account_type: "SAVIGNS"
+    agency_number: 2020
+    account_number: 101010
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+    client_id: 1

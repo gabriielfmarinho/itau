@@ -17,8 +17,8 @@ class FindClientServiceTest(
 ) {
 
     @Test
-    @DataSet(value = ["datasets/create-client-to-find.yaml"])
-    fun shouldFindClientByFirstNameWithSuccess() {
+    @DataSet(value = ["datasets/create-client-person-to-find.yaml"])
+    internal fun shouldFindClientByFirstNameWithSuccess() {
         val firstNameToFind = "GABRIEL"
         val clientFound = findClientService.findByFirstName(firstNameToFind)
         assertNotNull(clientFound)
@@ -26,7 +26,7 @@ class FindClientServiceTest(
     }
 
     @Test
-    fun shouldThrowAClientNotFoundExceptionWhenFindClientByFirstName() {
+    internal fun shouldThrowAClientNotFoundExceptionWhenFindClientByFirstName() {
         val firstNameToFind = "LEONARDO"
         assertThrows<ClientNotFoundException> {
             findClientService.findByFirstName(firstNameToFind)
@@ -34,7 +34,7 @@ class FindClientServiceTest(
     }
 
     @Test
-    fun shouldThrowAClientNotFoundExceptionWhenFindClientByFirstNameAndLastName() {
+    internal fun shouldThrowAClientNotFoundExceptionWhenFindClientByFirstNameAndLastName() {
         val firstNameToFind = "LEONARDO"
         val lastNameToFind = "FERREIRA"
         assertThrows<ClientNotFoundException> {
@@ -43,8 +43,8 @@ class FindClientServiceTest(
     }
 
     @Test
-    @DataSet(value = ["datasets/create-client-to-find.yaml"])
-    fun shouldFindClientByFirstNameAndLastNameWithSuccess() {
+    @DataSet(value = ["datasets/create-client-person-to-find.yaml"])
+    internal fun shouldFindClientByFirstNameAndLastNameWithSuccess() {
         val firstNameToFind = "GABRIEL"
         val lastNameToFind = "FERREIRA"
         val clientFound = findClientService.findByFirstNameAndLastName(firstNameToFind, lastNameToFind)

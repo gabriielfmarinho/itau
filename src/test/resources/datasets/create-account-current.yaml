@@ -1,0 +1,15 @@
+clients:
+  - id: 1
+    type_person: "PERSON"
+    first_name: "GABRIEL"
+    last_name: "FERREIRA"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+accounts:
+  - id: 1
+    account_type: "CURRENT"
+    agency_number: 1010
+    account_number: 202020
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+    client_id: 1

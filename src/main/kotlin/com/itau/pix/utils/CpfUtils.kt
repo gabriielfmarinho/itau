@@ -10,15 +10,15 @@ object CpfUtils {
     private val CPF_VALIDATOR = CPFValidator()
 
     fun isANotValidCPF(cpf: String): Boolean {
-        return if (isCorrectFormat(cpf)) isValidCpf(cpf) else false
+        return isIncorrectFormat(cpf) || isNotValidCpf(cpf)
     }
 
-    private fun isCorrectFormat(cpf: String): Boolean {
+    private fun isIncorrectFormat(cpf: String): Boolean {
         val regex = Regex(REGEX_TO_VALID_CPF)
-        return cpf.matches(regex)
+        return !cpf.matches(regex)
     }
 
-    private fun isValidCpf(cpf: String): Boolean {
+    private fun isNotValidCpf(cpf: String): Boolean {
         return try {
             CPF_VALIDATOR.assertValid(cpf)
             false

@@ -14,14 +14,13 @@ class DeletePixKeyService(
 
     fun delete(uuid: String): PixKey {
         log.info("starting product inactivation by id, id${uuid}")
-        val pixKeyFound = findPixKeyService.findEntityById(uuid)
+        val pixKeyFound = findPixKeyService.findEvenInactiveBydId(uuid)
         if (pixKeyFound.isInactive()) {
             throw PixKeyAlreadyInactivatedException()
         }
         pixKeyFound.inactivate()
         return savePixKeyService.save(pixKeyFound)
     }
-
 
     companion object {
         val log: Logger = loggerFor(DeletePixKeyService::class.java)

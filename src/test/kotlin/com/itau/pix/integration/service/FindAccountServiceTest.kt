@@ -14,9 +14,10 @@ import org.junit.jupiter.api.assertThrows
 class FindAccountServiceTest(
     val findAccountService: FindAccountService
 ) {
+
     @Test
-    @DataSet(value = arrayOf("datasets/create-account-to-find.yaml"))
-    fun shouldFindAccountByAgencyAndAccountNumberWithSuccess() {
+    @DataSet(value = arrayOf("datasets/create-account-current-to-find.yaml"))
+    internal fun shouldFindAccountByAgencyAndAccountNumberWithSuccess() {
         val agencyNumber = 1010
         val accountNumber = 202020
         val clientFound = findAccountService.findByAgencyAndAccountNumber(agencyNumber, accountNumber)
@@ -24,7 +25,7 @@ class FindAccountServiceTest(
     }
 
     @Test
-    fun shouldThrowAAccountNotFoundExceptionWhenFindAccountByAgencyAndAccountNumber() {
+    internal fun shouldThrowAAccountNotFoundExceptionWhenFindAccountByAgencyAndAccountNumber() {
         val agencyNumber = 2020
         val accountNumber = 303030
         assertThrows<AccountNotFoundException> {

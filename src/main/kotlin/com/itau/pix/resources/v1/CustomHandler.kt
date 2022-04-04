@@ -2,8 +2,14 @@ package com.itau.pix.resources.v1
 
 import com.itau.pix.domain.exceptions.AccountAlreadyExistException
 import com.itau.pix.domain.exceptions.AccountNotFoundException
+import com.itau.pix.domain.exceptions.CNPJNotValidException
+import com.itau.pix.domain.exceptions.CPFNotValidException
 import com.itau.pix.domain.exceptions.ClientAlreadyRegisteredException
+import com.itau.pix.domain.exceptions.ClientNotFoundException
 import com.itau.pix.domain.exceptions.CustomerDifferentFromAccountException
+import com.itau.pix.domain.exceptions.EmailNotValidException
+import com.itau.pix.domain.exceptions.EqualKeyException
+import com.itau.pix.domain.exceptions.ExceededNumbersOfKeysException
 import com.itau.pix.domain.exceptions.PixKeyAlreadyInactivatedException
 import com.itau.pix.domain.exceptions.PixKeyNotFoundException
 import com.itau.pix.resources.v1.response.ErrorResponse
@@ -40,6 +46,16 @@ class CustomHandler {
             .status(HttpStatus.NOT_FOUND)
             .body(
                 buildErrorResponse(HttpStatus.NOT_FOUND, exception.javaClass.name, PIX_KEY_MESSAGE_NOT_FOUND)
+            )
+    }
+
+    @ExceptionHandler(ClientNotFoundException::class)
+    fun handleClientNotFoundException(exception: ClientNotFoundException):
+            ResponseEntity<ErrorResponse> {
+        return ResponseEntity
+            .status(HttpStatus.NOT_FOUND)
+            .body(
+                buildErrorResponse(HttpStatus.NOT_FOUND, exception.javaClass.name, CLIENT_MESSAGE_NOT_FOUND)
             )
     }
 
@@ -81,10 +97,10 @@ class CustomHandler {
     fun handleUnexpectedTypeException(exception: UnexpectedTypeException):
             ResponseEntity<ErrorResponse> {
         return ResponseEntity
-            .status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .status(HttpStatus.UNPROCESSABLE_ENTITY)
             .body(
                 exception.message?.let {
-                    buildErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR, exception.javaClass.name, it)
+                    buildErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY, exception.javaClass.name, it)
                 }
             )
     }
@@ -99,6 +115,76 @@ class CustomHandler {
                     HttpStatus.UNPROCESSABLE_ENTITY,
                     exception.javaClass.name,
                     MESSAGE_CLIENT_ALREADY_REGISTERED
+                )
+            )
+    }
+
+    @ExceptionHandler(CPFNotValidException::class)
+    fun handleCPFNotValidException(exception: CPFNotValidException):
+            ResponseEntity<ErrorResponse> {
+        return ResponseEntity
+            .status(HttpStatus.UNPROCESSABLE_ENTITY)
+            .body(
+                buildErrorResponse(
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                    exception.javaClass.name,
+                    MESSAGE_CPF_NOT_VALID
+                )
+            )
+    }
+
+    @ExceptionHandler(CNPJNotValidException::class)
+    fun handleCNPJNotValidException(exception: CNPJNotValidException):
+            ResponseEntity<ErrorResponse> {
+        return ResponseEntity
+            .status(HttpStatus.UNPROCESSABLE_ENTITY)
+            .body(
+                buildErrorResponse(
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                    exception.javaClass.name,
+                    MESSAGE_CNPJ_NOT_VALID
+                )
+            )
+    }
+
+    @ExceptionHandler(EmailNotValidException::class)
+    fun handleEmailNotValidException(exception: EmailNotValidException):
+            ResponseEntity<ErrorResponse> {
+        return ResponseEntity
+            .status(HttpStatus.UNPROCESSABLE_ENTITY)
+            .body(
+                buildErrorResponse(
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                    exception.javaClass.name,
+                    MESSAGE_EMAIL_NOT_VALID
+                )
+            )
+    }
+
+    @ExceptionHandler(EqualKeyException::class)
+    fun handleEqualKeyException(exception: EqualKeyException):
+            ResponseEntity<ErrorResponse> {
+        return ResponseEntity
+            .status(HttpStatus.UNPROCESSABLE_ENTITY)
+            .body(
+                buildErrorResponse(
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                    exception.javaClass.name,
+                    MESSAGE_PIX_KEY_ALREADY_REGISTERED
+                )
+            )
+    }
+
+    @ExceptionHandler(ExceededNumbersOfKeysException::class)
+    fun handleExceededNumbersOfKeysException(exception: ExceededNumbersOfKeysException):
+            ResponseEntity<ErrorResponse> {
+        return ResponseEntity
+            .status(HttpStatus.UNPROCESSABLE_ENTITY)
+            .body(
+                buildErrorResponse(
+                    HttpStatus.UNPROCESSABLE_ENTITY,
+                    exception.javaClass.name,
+                    MESSAGE_EXCEEDED_NUMBER_OF_KEYS
                 )
             )
     }
@@ -168,11 +254,17 @@ class CustomHandler {
     }
 
     companion object {
-        private const val PIX_KEY_MESSAGE_ALREADY_INACTIVATED: String = "your pix key is already inactive"
-        private const val PIX_KEY_MESSAGE_NOT_FOUND: String = "your pix key not found"
-        private const val ACCOUNT_MESSAGE_NOT_FOUND: String = "your account not found"
-        private const val MESSAGE_CUSTOMER_DOES_NOT_HAVE_AN_ACCOUNT: String = "customer does not have an account"
-        private const val MESSAGE_CLIENT_ALREADY_REGISTERED: String = "client already registered in the base"
-        private const val MESSAGE_ACCOUNT_ALREADY_REGISTERED: String = "account already registered in the base"
+        const val PIX_KEY_MESSAGE_ALREADY_INACTIVATED: String = "your pix key is already inactive"
+        const val PIX_KEY_MESSAGE_NOT_FOUND: String = "your pix key not found"
+        const val CLIENT_MESSAGE_NOT_FOUND: String = "your client informed not found"
+        const val ACCOUNT_MESSAGE_NOT_FOUND: String = "your account not found"
+        const val MESSAGE_CUSTOMER_DOES_NOT_HAVE_AN_ACCOUNT: String = "customer does not have an account"
+        const val MESSAGE_CLIENT_ALREADY_REGISTERED: String = "client already registered in the base"
+        const val MESSAGE_EXCEEDED_NUMBER_OF_KEYS: String = "user exceeded number of keys"
+        const val MESSAGE_PIX_KEY_ALREADY_REGISTERED: String = "pix key already registered in the base"
+        const val MESSAGE_ACCOUNT_ALREADY_REGISTERED: String = "account already registered in the base"
+        const val MESSAGE_CPF_NOT_VALID: String = "cpf is not valid"
+        const val MESSAGE_CNPJ_NOT_VALID: String = "cnpj is not valid"
+        const val MESSAGE_EMAIL_NOT_VALID: String = "email is not valid"
     }
 }

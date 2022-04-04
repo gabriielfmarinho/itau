@@ -11,7 +11,7 @@ class CreatePixKey(
 
     fun create(createPixKeyDto: CreatePixKeyDto): PixKeyDto? {
         if (hasNoStrategy(createPixKeyDto)) {
-            throw IllegalArgumentException("The strategy to ${createPixKeyDto.keyType.name} does not exist")
+            throw IllegalArgumentException("the strategy to ${createPixKeyDto.keyType.name} does not exist")
         }
         return strategies[createPixKeyDto.keyType.name]?.create(createPixKeyDto);
     }

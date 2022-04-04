@@ -1,0 +1,15 @@
+clients:
+  - id: 2
+    type_person: "PERSON"
+    first_name: "JULIANO"
+    last_name: "PAIXAO"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+accounts:
+  - id: 2
+    account_type: "SAVIGNS"
+    agency_number: 2020
+    account_number: 101010
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+    client_id: 2

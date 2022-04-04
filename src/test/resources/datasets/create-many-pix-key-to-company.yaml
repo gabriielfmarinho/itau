@@ -1,0 +1,176 @@
+clients:
+  - id: 1
+    type_person: "COMPANY"
+    first_name: "MATRIX"
+    last_name: "LTDA"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+accounts:
+  - id: 1
+    account_type: "CURRENT"
+    agency_number: 1010
+    account_number: 202020
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+    client_id: 1
+keys_pix:
+  - id: 00dfd621-1681-4e72-9a24-f465968ed8a2
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "gabriel.fmarinho@gmail.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 35bb446e-ee91-4e92-b6a8-63aaca1d9a65
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "gabriiel.fmarinho@gmail.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: b95c3b90-aeaa-48fd-9012-bdb10297d456
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "gabriiel@gmail.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 5d1c4069-1208-4996-89d0-6f172fe1d64a
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "gabriiel.ferreiram@gmail.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 54a20f00-5091-4e71-8323-9624dad5d887
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "gabriiel.f@gmail.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: e1504742-73ca-4bfd-81f2-47979e2f173c
+    account_id: 1
+    key_type: "CPF"
+    key_value: "16964568000"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 3b788553-5b12-4ded-a5a8-38c50216b08a
+    account_id: 1
+    key_type: "CPF"
+    key_value: "72159150002"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 9a483a67-e498-40ca-b0e2-6ab99d7fac82
+    account_id: 1
+    key_type: "CPF"
+    key_value: "13600554018"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 86af5160-d632-48fe-8984-64417150ca29
+    account_id: 1
+    key_type: "CNPJ"
+    key_value: "62601435000149"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 0b0f6ab2-b291-4cbb-8cd8-c5d910935661
+    account_id: 1
+    key_type: "CNPJ"
+    key_value: "95415049000111"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: b98568be-2f11-4007-8c5f-6f9c8e675d6a
+    account_id: 1
+    key_type: "CNPJ"
+    key_value: "73013370000137"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 9f744045-fe8e-488d-b252-b1a2b645df08
+    account_id: 1
+    key_type: "CNPJ"
+    key_value: "21241034000148"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 18fe3472-17cc-40e3-913e-69d40a409c7c
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "matrix@gmail.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: e3643925-b315-420a-a7b2-12003e2b2a3f
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "matrix@matrix.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 3360583f-d5db-44b7-b527-048d6e4a2c89
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "matrix@outlook.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 50b842b4-3fd3-4150-a290-fb7fb66e6bf0
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "matrix@uol.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 704ba212-07c2-45b5-afd1-4a4df2c6610b
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "matrix@hotmail.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: fbcc914b-7206-46d0-86e3-823f2f90f5d3
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "matrix.ltda@hotmail.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 297e9126-3410-434d-9a12-a742891716c6
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "matrix.lt@hotmail.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 01529cb3-e20b-4897-9a38-99d70930be88
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "matrix.informatica@hotmail.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"

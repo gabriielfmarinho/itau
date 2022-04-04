@@ -1,0 +1,24 @@
+clients:
+  - id: 1
+    type_person: "PERSON"
+    first_name: "GABRIEL"
+    last_name: "FERREIRA"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+accounts:
+  - id: 1
+    account_type: "CURRENT"
+    agency_number: 1010
+    account_number: 202020
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+    client_id: 1
+keys_pix:
+  - id: 00dfd621-1681-4e72-9a24-f465968ed8a2
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "gabriel.fmarinho@gmail.com"
+    inactive: 1
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"

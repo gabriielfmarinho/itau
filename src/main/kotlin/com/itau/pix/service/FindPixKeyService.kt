@@ -41,6 +41,12 @@ class FindPixKeyService(
             .orElseThrow { PixKeyNotFoundException() }
     }
 
+    fun findEvenInactiveBydId(id: String): PixKey {
+        log.info("initiating consultation in the pix key base by id=${id}")
+        return pixKeyRepository.findEvenInactiveBydId(id)
+            .orElseThrow { PixKeyNotFoundException() }
+    }
+
     fun findPaged(params: Params): Page<PixKeyDetailsDto> {
         log.info("initiating consultation in the pix key base by params=${params} and with pagination")
         return pixKeyRepository.findPaged(params)

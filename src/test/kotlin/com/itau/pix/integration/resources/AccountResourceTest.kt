@@ -16,13 +16,13 @@ class AccountResourceTest(
 ) {
 
     @Test
-    @DataSet(value = ["datasets/create-client-to-find.yaml"])
-    fun shouldSuccessfullyRegisterAAccount() {
-        val account = createAccountRequestFactory.createDefault()
+    @DataSet(value = ["datasets/create-client-person-to-find.yaml"])
+    internal fun shouldSuccessfullyRegisterAAccount() {
+        val accountToCreate = createAccountRequestFactory.createDefault()
         RestAssured
             .given()
             .log().all()
-            .body(account)
+            .body(accountToCreate)
             .`when`()
             .post("/accounts")
             .then()
@@ -32,13 +32,13 @@ class AccountResourceTest(
     }
 
     @Test
-    @DataSet(value = ["datasets/create-account-to-find.yaml"])
-    fun shouldReturnStatusCode422WhenAccountIsAlreadyRegistered() {
-        val account = createAccountRequestFactory.createWith(1010, 202020)
+    @DataSet(value = ["datasets/create-account-current-to-find.yaml"])
+    internal fun shouldReturnStatusCode422WhenAccountIsAlreadyRegistered() {
+        val accountToCreate = createAccountRequestFactory.createWith(1010, 202020)
         RestAssured
             .given()
             .log().all()
-            .body(account)
+            .body(accountToCreate)
             .`when`()
             .post("/accounts")
             .then()

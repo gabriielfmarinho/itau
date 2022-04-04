@@ -1,0 +1,56 @@
+clients:
+  - id: 1
+    type_person: "PERSON"
+    first_name: "GABRIEL"
+    last_name: "FERREIRA"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+accounts:
+  - id: 1
+    account_type: "CURRENT"
+    agency_number: 1010
+    account_number: 202020
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+    client_id: 1
+keys_pix:
+  - id: 00dfd621-1681-4e72-9a24-f465968ed8a2
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "gabriel.fmarinho@gmail.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 35bb446e-ee91-4e92-b6a8-63aaca1d9a65
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "gabriiel.fmarinho@gmail.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: b95c3b90-aeaa-48fd-9012-bdb10297d456
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "gabriiel@gmail.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 5d1c4069-1208-4996-89d0-6f172fe1d64a
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "gabriiel.ferreiram@gmail.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"
+  - id: 54a20f00-5091-4e71-8323-9624dad5d887
+    account_id: 1
+    key_type: "EMAIL"
+    key_value: "gabriiel.f@gmail.com"
+    inactive: 0
+    date_inactive: "[NOW]"
+    date_create: "[NOW]"
+    date_update: "[NOW]"

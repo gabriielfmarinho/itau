@@ -30,7 +30,7 @@ interface AccountRepository : JpaRepository<Account, Long> {
         on ac.client_id = c.id
         where ac.agency_number = :agencyNumber
         and ac.account_number = :accountNumber
-        and ac.account_ype = :accountType
+        and ac.account_type = :accountType
     """,
         nativeQuery = true
     )

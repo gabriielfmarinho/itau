@@ -24,6 +24,6 @@ class CpfUtilsTest {
     @Test
     internal fun shouldReturnTrueWhenCpfIsNotFormatValid() {
         val cpfNotValid = "7032589872221"
-        assertFalse(isANotValidCPF(cpfNotValid))
+        assertTrue(isANotValidCPF(cpfNotValid))
     }
 }
