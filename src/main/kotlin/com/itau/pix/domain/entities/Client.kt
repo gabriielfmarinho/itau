@@ -16,7 +16,7 @@ data class Client(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 1,
+    val id: Long = 0,
 
     @Enumerated(EnumType.STRING)
     val typePerson: TypePerson,

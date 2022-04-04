@@ -35,6 +35,7 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-ui:1.6.6")
     implementation("br.com.caelum.stella:caelum-stella-core:2.1.2")
     implementation("io.gitlab.arturbosch.detekt:detekt-cli:1.16.0")
+    implementation("org.flywaydb:flyway-core")
     runtimeOnly("mysql:mysql-connector-java")
     testImplementation("org.testcontainers:mysql:1.15.2")
     testImplementation("com.github.database-rider:rider-junit5:1.32.3")

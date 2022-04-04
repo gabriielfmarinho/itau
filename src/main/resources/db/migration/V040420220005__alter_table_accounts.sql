@@ -1,0 +1,1 @@
+alter table accounts add constraint client_fk foreign key (client_id) references clients (id);

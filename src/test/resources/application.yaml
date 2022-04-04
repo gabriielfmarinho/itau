@@ -12,3 +12,7 @@ spring:
       dialect: org.hibernate.dialect.MySQL5Dialect
       ddl-auto: update
     show-sql: true
+  flyway:
+    baseline-on-migrate: false
+    enabled: false
+    locations: classpath:db/migration

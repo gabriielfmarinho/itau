@@ -1,0 +1,1 @@
+alter table keys_pix add constraint key_value_unique unique (key_value);

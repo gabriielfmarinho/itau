@@ -7,8 +7,12 @@ spring:
   jpa:
     hibernate:
       dialect: org.hibernate.dialect.MySQL5Dialect
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    locations: classpath:db/migration
 springdoc:
   swagger-ui:
     path: "/swagger-ui-custom.html"
