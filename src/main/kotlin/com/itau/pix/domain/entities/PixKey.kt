@@ -32,7 +32,7 @@ class PixKey(
     @Enumerated(EnumType.STRING)
     val keyType: KeyType,
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     val keyValue: String,
 
     var inactive: Boolean,

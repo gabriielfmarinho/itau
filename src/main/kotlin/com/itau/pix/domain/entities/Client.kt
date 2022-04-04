@@ -24,6 +24,6 @@ data class Client(
     @Column(nullable = false)
     val firstName: String,
 
-    val lastName: String,
+    val lastName: String = "",
 
     ) : BaseEntity()
