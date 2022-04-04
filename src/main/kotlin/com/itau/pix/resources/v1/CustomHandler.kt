@@ -1,6 +1,7 @@
 package com.itau.pix.resources.v1
 
 import com.itau.pix.domain.exceptions.AccountAlreadyExistException
+import com.itau.pix.domain.exceptions.AccountNotFoundException
 import com.itau.pix.domain.exceptions.ClientAlreadyRegisteredException
 import com.itau.pix.domain.exceptions.CustomerDifferentFromAccountException
 import com.itau.pix.domain.exceptions.PixKeyAlreadyInactivatedException
@@ -39,6 +40,16 @@ class CustomHandler {
             .status(HttpStatus.NOT_FOUND)
             .body(
                 buildErrorResponse(HttpStatus.NOT_FOUND, exception.javaClass.name, PIX_KEY_MESSAGE_NOT_FOUND)
+            )
+    }
+
+    @ExceptionHandler(AccountNotFoundException::class)
+    fun handleAccountNotFoundException(exception: AccountNotFoundException):
+            ResponseEntity<ErrorResponse> {
+        return ResponseEntity
+            .status(HttpStatus.NOT_FOUND)
+            .body(
+                buildErrorResponse(HttpStatus.NOT_FOUND, exception.javaClass.name, ACCOUNT_MESSAGE_NOT_FOUND)
             )
     }
 
@@ -159,6 +170,7 @@ class CustomHandler {
     companion object {
         private const val PIX_KEY_MESSAGE_ALREADY_INACTIVATED: String = "your pix key is already inactive"
         private const val PIX_KEY_MESSAGE_NOT_FOUND: String = "your pix key not found"
+        private const val ACCOUNT_MESSAGE_NOT_FOUND: String = "your account not found"
         private const val MESSAGE_CUSTOMER_DOES_NOT_HAVE_AN_ACCOUNT: String = "customer does not have an account"
         private const val MESSAGE_CLIENT_ALREADY_REGISTERED: String = "client already registered in the base"
         private const val MESSAGE_ACCOUNT_ALREADY_REGISTERED: String = "account already registered in the base"

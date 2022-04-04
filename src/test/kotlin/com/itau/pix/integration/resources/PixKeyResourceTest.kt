@@ -2,6 +2,7 @@ package com.itau.pix.integration.resources
 
 import com.github.database.rider.core.api.dataset.DataSet
 import com.github.database.rider.junit5.api.DBRider
+import com.itau.pix.domain.enums.KeyType
 import com.itau.pix.factory.CreatePixKeyRequestFactory
 import com.itau.pix.integration.config.IntegrationTest
 import io.restassured.RestAssured
@@ -47,6 +48,40 @@ class PixKeyResourceTest(
             .body("status", `is`(422))
             .body("error", `is`("java.lang.IllegalArgumentException"))
             .body("message", `is`("The strategy to RANDOM does not exist"))
+    }
+
+    @Test
+    fun shouldReturnStatusCode422WhenFieldsNotIsCorrectFormat() {
+        val pixKeyToRequest = createPixKeyRequestFactory.createWith(KeyType.CPF, 12345, 123456789)
+        RestAssured
+            .given()
+            .log().all()
+            .`when`()
+            .body(pixKeyToRequest)
+            .post("/pix-keys")
+            .then()
+            .log().all()
+            .statusCode(HttpStatus.SC_UNPROCESSABLE_ENTITY)
+            .body("status", `is`(422))
+            .body("error", `is`("org.springframework.web.bind.MethodArgumentNotValidException"))
+            .body("messages.size()", `is`(2))
+    }
+
+    @Test
+    fun shouldReturnStatusCode404WhenAccountNotFound() {
+        val pixKeyToRequest = createPixKeyRequestFactory.createWith(KeyType.CPF, 1234, 123456)
+        RestAssured
+            .given()
+            .log().all()
+            .`when`()
+            .body(pixKeyToRequest)
+            .post("/pix-keys")
+            .then()
+            .log().all()
+            .statusCode(HttpStatus.SC_NOT_FOUND)
+            .body("status", `is`(404))
+            .body("error", `is`("com.itau.pix.domain.exceptions.AccountNotFoundException"))
+            .body("message", `is`("your account not found"))
     }
 
     @Test

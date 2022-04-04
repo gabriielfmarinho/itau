@@ -21,6 +21,17 @@ class CreatePixKeyRequestFactory: AbstractFactory<CreatePixKeyRequest> {
         )
     }
 
+    fun createWith(keyType: KeyType, agencyNumber: Int, accountNumber: Int): CreatePixKeyRequest {
+        return CreatePixKeyRequest(keyType,
+            UUID.randomUUID().toString(),
+            AccountType.SAVIGNS,
+            agencyNumber,
+            accountNumber,
+            FAKER.name.firstName(),
+            FAKER.name.lastName()
+        )
+    }
+
     companion object {
         private val FAKER = Faker()
     }

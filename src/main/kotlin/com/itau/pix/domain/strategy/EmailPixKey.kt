@@ -10,8 +10,8 @@ import com.itau.pix.service.FindAccountService
 import com.itau.pix.service.FindPixKeyService
 import com.itau.pix.service.PixKeyAlreadyRegistered
 import com.itau.pix.service.SavePixKeyService
-import com.itau.pix.utils.CreateKeyUtils.hasExceededNumberOfKeysByAccount
-import com.itau.pix.utils.CreateKeyUtils.isANotValidEmail
+import com.itau.pix.utils.AccountUtils.hasExceededNumberOfKeysByAccount
+import com.itau.pix.utils.EmailUtils.isANotValidEmail
 import org.springframework.stereotype.Component
 
 @Component("EMAIL")

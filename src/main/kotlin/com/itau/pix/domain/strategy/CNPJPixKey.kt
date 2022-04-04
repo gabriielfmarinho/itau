@@ -10,8 +10,8 @@ import com.itau.pix.service.FindAccountService
 import com.itau.pix.service.FindPixKeyService
 import com.itau.pix.service.PixKeyAlreadyRegistered
 import com.itau.pix.service.SavePixKeyService
-import com.itau.pix.utils.CreateKeyUtils
-import com.itau.pix.utils.CreateKeyUtils.isANotValidCNPJ
+import com.itau.pix.utils.AccountUtils.hasExceededNumberOfKeysByAccount
+import com.itau.pix.utils.CnpjUtils.isANotValidCNPJ
 import org.springframework.stereotype.Component
 
 @Component("CNPJ")
@@ -36,7 +36,7 @@ class CNPJPixKey(
 
         val numbersOfAccount = findPixKeyService.countPixKeyByAccount(account.id)
 
-        if (CreateKeyUtils.hasExceededNumberOfKeysByAccount(numbersOfAccount, account)) {
+        if (hasExceededNumberOfKeysByAccount(numbersOfAccount, account)) {
             throw ExceededNumbersOfKeysException()
         }
 

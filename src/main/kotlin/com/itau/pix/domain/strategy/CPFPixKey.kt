@@ -10,8 +10,8 @@ import com.itau.pix.service.FindAccountService
 import com.itau.pix.service.FindPixKeyService
 import com.itau.pix.service.PixKeyAlreadyRegistered
 import com.itau.pix.service.SavePixKeyService
-import com.itau.pix.utils.CreateKeyUtils
-import com.itau.pix.utils.CreateKeyUtils.isANotValidCPF
+import com.itau.pix.utils.AccountUtils.hasExceededNumberOfKeysByAccount
+import com.itau.pix.utils.CpfUtils.isANotValidCPF
 import org.springframework.stereotype.Component
 
 @Component("CPF")
@@ -37,7 +37,7 @@ class CPFPixKey(
 
         val numbersOfAccount = findPixKeyService.countPixKeyByAccount(account.id)
 
-        if (CreateKeyUtils.hasExceededNumberOfKeysByAccount(numbersOfAccount, account)) {
+        if (hasExceededNumberOfKeysByAccount(numbersOfAccount, account)) {
             throw ExceededNumbersOfKeysException()
         }
 
